@@ -1,0 +1,12 @@
+{
+    "liveServer.settings.port": 5501,
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "00_banco_dados.db",
+            "database": "/home/black_d/Downloads/00_banco_dados.db"
+        }
+    ]
+}

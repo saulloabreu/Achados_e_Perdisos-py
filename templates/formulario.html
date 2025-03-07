@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario{{  form_name }}</title>
+    <link rel="stylesheet" href="/static/CSS/formulario.css">
+    <link rel="icon" type="image/png" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/digital-key-2521684-2108304.png"> <!--Favicon-->
+
+    <!--links Java Script para visualização do formulario-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.min.js"></script>
+
+    <script src="/static/viewer.js"></script>
+    <link rel="stylesheet" href="/static/viewer.css">
+    
+</head>
+<body>
+    <!--ajusta o zum da pagina-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            document.body.style.zoom = "100%";
+        })
+    </script>
+
+    <!--renderiza o  PDF.js. mantendo a mesma aparencia do formulario.html-->
+    <canvas id="pdfCanvas"></canvas>
+
+    <div class="container">
+        <h1 class="heading">Segurança Patrimonial</h1>
+        <h3 class="heading">Sistema de Cadastro de Achados e Perdidos</h3>
+        <h3  class="heading">Termo de Retirada de Item</h3>
+        <hr><br><br><br><br><br><br><br>
+
+        <div class="content ">
+            <p id="zero">Eu: __________________________________ , CPF:__________________________,</p>
+            <p>
+                declaro estar retirando o item: <b>{{ item_descri }}</b>, 
+                com o número de registro: <b>{{ item_id }}</b>,
+                que se encontrava em posse da segurança desde a data: <b>{{ item_data }}</b>.
+            </p>
+            
+            <div class="signature">
+                <div id="paciente">
+                    <p>
+                        _________________________
+                        <br><br>
+                        Ass. Paciente
+                    </p>
+                </div>
+                
+                <div id="vig">
+                    <p>
+                        _________________________
+                        <br><br>
+                        Ass. Vigilante
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div id="data" class="text-center">
+            <p class="data">{{ data_atual }}</p>
+            <div class="line-date"></div>
+            <p>Data retirada</p>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <a href="{{ url_for('view_all_items') }}" class="btn_Voltar 
+        button-red no-print">Cancelar</a>
+
+        <a href="{{ url_for('complete_item', item_id=item_id, nome=item_descri, data_encontrado=item_data) }}" class="btn_dar_baixa button-red no-print">Dar Baixa</a>
+
+        <button  onclick="window.print()" class="btn_imprimir button-red no-print">Imprimir</button>
+    </div>
+    <br>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Ver Itens - Lost and Found</title>
+    <link rel="icon" type="image/png" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/digital-key-2521684-2108304.png"> <!--Favicon-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/CSS/style02.css">
+    <link rel="stylesheet" href="/static/CSS/styleModal.css">
+
+</head>
+<body>
+    <!--ajusta o zum da pagina-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            document.body.style.zoom = "100%";
+        })
+    </script>
+
+    <div class="container">
+        <h4 class="mt-4 title"><b>Ver Itens</b></h4>
+        <hr class="linha spacer">
+        <div class="status-box">
+            <h7 class="title">Status</h7>
+            <h8>
+                <div class="status-box">
+                    <p>Número de Itens: {{ numero_itens }}</p>
+                </div>
+            </h8>
+        </div>
+        <form class="mb-4 form-row">
+            <div class="col">
+                <input type="text" class="form-control btn_filters" placeholder="Nome ou Id" name="palavra_chave" value="{{ request.args.get('palavra_chave', '') }}">
+            </div>
+            <div class="col">
+                <input type="date" class="form-control btn_filters" name="start_date" value="{{ request.args.get('start_date', '') }}">
+            </div>
+            <div class="col">
+                <input type="date" class="form-control btn_filters" name="end_date" value="{{ request.args.get('end_date', '') }}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn button-red">Filtrar</button>
+            </div>         
+        </form>
+        <div class="table-container">
+            <table class="table table-hover custom-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Vigilante</th>
+                        <th>Matricula</th>
+                        <th>Nome\Descrição</th>
+                        <th>Obs</th>
+                        <th>Local</th>
+                        <th>Data de Encontrado</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody class="table_row">
+                    {% for item in items %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>{{ item[3] }}</td>
+                        <td>{{ item[4] }}</td>
+                        <td>{{ item[5] }}</td>
+                        <!--Altera o formato da data somente na pagina-->
+                        <td data-date="{{ item[6] }}" data-formatted-date=""></td> 
+                        <td>
+                            <a href="{{ url_for('formulario', id=item[0], nome=item[3], data_encontrado=item[6]) }}" class="btn button-red">Dar Baixa</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!--Java Script responsavel pela alteração do formato da data de["%Y/%mm/%dd" para "%dd/%mm/%Y"] somente na pagina-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+            <script>
+                var dataCells = document.querySelectorAll('td[data-date]');
+
+                dataCells.forEach(function(cell) {
+                    var data = cell.getAttribute('data-date');
+                    var dataFormatada = moment(data, 'YYYY-MM-DD').format('DD/MM/YYYY');
+                    cell.setAttribute('data-formatted-date', dataFormatada);
+                    cell.innerText = dataFormatada;
+                });
+            </script>
+        </div>
+        <br class="spacer">
+        <div class="form-group">
+            <a href="{{ url_for('index') }}" class="btn button-red down_left">Voltar à Página Principal</a>
+        </div>
+        
+    </div>
+</body>
+</html>

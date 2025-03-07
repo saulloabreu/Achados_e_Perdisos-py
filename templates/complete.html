@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/CSS/style02.css">
+    <link rel="stylesheet" href="/static/CSS/styleModal.css">
+    <title>Completar Item</title>
+    <link rel="icon" type="image/png" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/digital-key-2521684-2108304.png"> <!--Favicon-->
+</head>
+<body>
+    <!--ajusta o zum da pagina-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            document.body.style.zoom = "100%";
+        })
+    </script>
+    
+    <div class="container">
+        <h4 class="mt-4 title"><b>Dar Baixa no Item</b></h4>
+        <hr class="linha">
+        <form method="POST" action="{{ url_for('complete_item', item_id=item[0]) }}">
+
+            <div class="form-row">
+                <div class="col">
+                    <label class="btn_filters" for="completado_por_nome">Nome:</label>
+                    <input type="text" id="completado_por_nome" name="completado_por_nome" class="form-control btn_filters" required><br>
+                </div>
+                <div class="col">
+                    <label class="btn_filters" for="completado_por_matric">Matrícula:</label>
+                    <input type="text" id="completado_por_matric" name="completado_por_matric" class="form-control btn_filters" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="btn_filters" for="observacao">Obs:</label>
+                <textarea class="form-control btn_filters" id="observacao" name="observacao" rows="3" cols="30"></textarea>
+            </div>
+
+            <hr class="linha">
+
+            <div class="form-group">
+                <button type="submit" class="btn button-red">Dar baixa</button>
+                
+                <a href="{{ url_for('view_all_items') }}" class="btn button-red">Cancelar</a>
+            </div>
+            
+        </form>
+
+        <!--   Modal   -->
+        <div class="container" id="modal">
+            <div class="popup" id="popup">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png" width="100" alt="imagem pelo link">
+                <br>
+                <h2 class="title_modal">TKS</h2>
+                <p>            
+                    Baixa do item realizadao com sucesso!   
+                </p>
+                <button type="submit" class="btn button-red-modal"><b>Ok</b></button>            
+            </div>
+        </div>
+
+        <!--Java Script responsavel pelo modal-->
+        <script>
+
+            const form = document.querySelector("form");
+            const modal = document.querySelector(".popup");
+            const buttonClose = document.querySelector(".button-red-modal");
+
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+                modal.classList.add("open-popup");
+            });
+
+            buttonClose.onclick = function() {
+                modal.classList.remove("open-popup");
+                form.submit();
+            };
+
+        </script>
+
+    </div>
+</body>
+</html>

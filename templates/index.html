@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost and Found</title>
+    <link rel="icon" type="image/png" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/digital-key-2521684-2108304.png"> <!--Favicon-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/CSS/style02.css">
+</head>
+<body>
+    <!--ajusta o zum da pagina-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            document.body.style.zoom = "100%";
+        })
+    </script>
+    
+    <nav class="menu">
+        <input type="checkbox" class="menu-faketrigger" />
+
+        <div class="menu-lines">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <ul>
+            <li><a href="{{url_for('add_item')}}" class="list-group-item list-group-item-action"><b>Adicionar Item</b></a></li>
+            <li><a href="{{url_for('view_all_items')}}" class="list-group-item list-group-item-action"><b>Lista de Itens</b></a></li>
+            <li><a href="{{url_for('view_completed_items')}}" class="list-group-item list-group-item-action"><b>Lista de Itens Baixados</b></a></li>
+        </ul>
+    </nav>
+
+    <main class="title">
+        <h1><b>Segurança Patrimonial</b></h1>
+        <h3>
+            <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Sistema de Cadastro de Achados e Perdidos
+            </b>
+        </h3>
+    </main>   
+</body>
+</html>

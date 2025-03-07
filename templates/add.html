@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/CSS/style02.css">
+    <link rel="stylesheet" href="/static/CSS/styleModal.css">
+    <title>Adicionar Item</title>
+    <link rel="icon" type="image/png" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/digital-key-2521684-2108304.png"> <!--Favicon-->
+</head>
+
+<body>
+    <!--ajusta o zum da pagina-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            document.body.style.zoom = "100%";
+        })
+    </script>
+    
+    <div class="container">
+        <h4 class="mt-4 title"><b>Adicionar Item</b></h4>
+
+        <hr class="linha spacer">
+
+        <form method="POST" action="{{ url_for('add_item') }}">
+
+            <div class="form-row">
+                <div class="col">
+                    <label class="btn_filters" for="vig">Nome/Vigilante:</label>
+                    <input type="text" class="caixa-texto classe-adicional form-control btn_filters" id="vig" name="vig" required>
+                </div>
+                <div class="col">
+                    <label class="btn_filters" for="matricula">Matrícula:</label>
+                    <input type="text" class="caixa-texto classe-adicional form-control btn_filters" id="matricula" name="matricula"
+                        required>
+                </div>
+            </div>
+
+            <br class="spacer">
+
+            <div class="form-group">
+                <label class="btn_filters" for="nome">Nome/Descrição:</label>
+                <textarea class="form-control btn_filters" id="nome" name="nome" rows="3" cols="30" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="btn_filters" for="obs">Obs:</label>
+                <textarea class="form-control btn_filters" id="obs" name="obs" rows="3" cols="30"></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col">
+                    <label class="btn_filters" for="local">Local:</label>
+                    <input type="text" class="form-control btn_filters" id="local" name="local" required>
+                </div>
+                <div class="form-group col">
+                    <label class="btn_filters" for="data_encontrado">Data Encontrado:</label>
+                    <input type="date" class="form-control btn_filters" id="data_encontrado" name="data_encontrado" required>
+                </div>
+            </div>
+            
+            <hr class="linha">
+
+            <div class="form-group">
+                <button class="btn button-red" type="submit">Adicionar Item</button>
+                <button onclick="redirectToIndex()" class="btn button-red">Voltar à Página Principal</button>
+                <script>
+                function redirectToIndex() {
+                    window.location.href = "{{ url_for('index') }}";
+                }
+                </script>
+            </div>
+
+        </form>
+
+        <!-- xxxxxxxxxxxxxxxx Modal xxxxxxxxxxxxxxxx -->
+
+        <div class="container" id="modal">
+            <div class="popup" id="popup">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png" alt="imagem pelo link">
+                <br>
+                <h2 class="title_modal">TKS</h2>
+                <p>Item adicionado com sucesso!</p>
+                <p>
+                    Numero de registro: <span id="item-id"></span>
+                </p>
+                <button type="button" class="btn button-red-modal"><b>OK</b></button>
+            </div>
+        </div>
+        <!--Java Script responsavel pelo modal-->
+        <script>
+            const form = document.querySelector("form");
+            const modal = document.querySelector(".popup");
+            const buttonClose = document.querySelector(".button-red-modal");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                const formData = new FormData(form);
+                fetch(form.action, {
+                    method: form.method,
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    modal.classList.add("open-popup");
+                    document.getElementById("item-id").textContent = data.id;
+                });
+            });
+
+            buttonClose.onclick = function () {
+                modal.classList.remove("open-popup");
+                window.location.href = "{{ url_for('index') }}";
+            };
+
+        </script>
+
+    </div>
+</body>
+
+</html>

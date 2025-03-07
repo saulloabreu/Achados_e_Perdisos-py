@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/CSS/style02.css">
+    <link rel="stylesheet" href="/static/CSS/styleModal.css">
+    <title>Itens Baixados</title>
+    <link rel="icon" type="image/png" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/digital-key-2521684-2108304.png"> <!--Favicon-->
+</head>
+<body>
+    <!--ajusta o zoom da pagina-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            document.body.style.zoom = "100%";
+        })
+    </script>
+
+    <div class="container">
+        <h4 class="mt-4 title"><b>Itens Baixados</b></h4>
+        <hr class="linha spacer">
+        <div class="status-box">
+            <h7 class="title">Status</h7>
+            <h9>             
+                <p>Número de Itens baixados: {{ numero_itens_baixados }}    
+                </p>             
+            </h9>
+        </div>
+    
+        <form class="mb-4 form-row">          
+            <div class="col">
+                <input type="text" class="form-control btn_filters" placeholder="Nome ou Id" name="palavra_chave" value="{{ request.args.get('palavra_chave', '') }}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary button-red">Filtrar</button>
+            </div>
+        </form>
+        
+        <!--Botão de Upload-->
+        <div class="upload-container">
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="col">
+                        <input type="file" id="fileInput" name="fileToUpload" style="display: none;">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn button-red" type="button" onclick="chooseFile()">Carregar Termo de Retitada</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br class="spacer">
+        <div class="table-container">
+            <table class="table table-hover custom-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Vigilante</th>
+                        <th>Matrícula</th>
+                        <th>Nome\Descrição</th>
+                        <th>Obs</th>
+                        <th>Local</th>
+                        <th>Data\Encontrado</th>
+                        <th>Concluido Por</th>
+                        <th>Matrícula</th>
+                        <th>OBS</th>
+                        <th>Data conclusão</th>
+                        <th>Vizualizar Termo de Retirada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items_baixados %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>{{ item[3] }}</td>
+                        <td>{{ item[4] }}</td>
+                        <td>{{ item[5] }}</td>
+                        <!--Altera o formato da data somente na pagina-->
+                        <td data-date="{{ item[6] }}" data-formatted-date=""></td>
+                        <td>{{ item[7] }}</td>
+                        <td>{{ item[8] }}</td>
+                        <td>{{ item[9] }}</td>
+                        <td>{{ item[10] }}</td>
+                        <td>
+                            <a href="{{ url_for('visualizar_formulario', item_id=item[0]) }}" class="btn btn button-red" target="_blank">Visualizar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!--Java Script responsavel pela alteração do formato da data de["%Y/%mm/%dd" para "%dd/%mm/%Y"] somente na pagina-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+            <script>
+                var dataCells = document.querySelectorAll('td[data-date]');
+
+                dataCells.forEach(function(cell) {
+                    var data = cell.getAttribute('data-date');
+                    var dataFormatada = moment(data, 'YYYY-MM-DD').format('DD/MM/YYYY');
+                    cell.setAttribute('data-formatted-date', dataFormatada);
+                    cell.innerText = dataFormatada;
+                });
+            </script>
+        </div>
+        <br class="spacer">
+        <!--JavaScript responsavel pelo Upload dos formularios-->
+        <script>
+            function chooseFile() {
+                document.getElementById("fileInput").click();
+            }
+        
+            document.getElementById("fileInput").addEventListener("change", function() {
+                uploadFile();
+            });
+        
+            function uploadFile() {
+                var fileInput = document.getElementById("fileInput");
+                var file = fileInput.files[0];
+        
+                if (file) {
+                    var formData = new FormData();
+                    formData.append("fileToUpload", file);
+        
+                    fetch("/upload", {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(function(response) {
+                        if (response.ok) {
+                            alert("Upload concluído com sucesso!");
+                        } else {
+                            alert("Falha ao fazer o upload do arquivo.");
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error("Erro durante o upload do arquivo:", error);
+                    });
+                } else {
+                    alert("Selecione um arquivo para fazer upload.");
+                }
+            }
+        </script>
+        <div class="form-group">
+            <a href="{{ url_for('index') }}" class="btn button-red down_left">Voltar à Página Principal</a>
+        </div>
+    </div>
+</body>
+</html>

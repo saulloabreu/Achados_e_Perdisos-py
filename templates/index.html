@@ -4,42 +4,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lost and Found</title>
+    <title>Achados e Perdidos</title>
     <link rel="icon" type="image/png" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/digital-key-2521684-2108304.png"> <!--Favicon-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/CSS/style02.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/CSS/style.css">
 </head>
 <body>
-    <!--ajusta o zum da pagina-->
-    <script>
-        document.addEventListener("DOMContentLoaded", function(){
-            document.body.style.zoom = "100%";
-        })
-    </script>
-    
-    <nav class="menu">
-        <input type="checkbox" class="menu-faketrigger" />
+    <nav id="sidebar">
+        <div id="sidebar_content">
+            <div id="user">
+                <img src="https://s2-gshow.glbimg.com/AEQ0ZWkhh-HOnSFeYcm2b2DzOTg=/0x0:6643x4480/1008x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2024/P/8/j7rb9FQR2yKUQJ4tlbUg/sepia-style-effect-with-moon-phase-night-sky.jpg" id="user_avatar" alt="Avatar" >
 
-        <div class="menu-lines">
-            <span></span>
-            <span></span>
-            <span></span>
+                <p id="user_infos">
+                    <span class="iten-description">
+                        Fulano de tal
+                    </span>
+                    <span class="iten-description">
+                        Lua Cheia
+                    </span>
+                </p>
+            </div>
+
+            <ul id="side_itens">
+                <li class="side-iten">
+                    <a href="{{url_for('add_item')}}">
+                        <i id="icon" class="fa-solid fa-pen-to-square"></i>
+                        <span class="iten-description">
+                            Adicionar item
+                        </span>
+                    </a>
+                </li>
+
+                <li class="side-iten">
+                    <a href="{{url_for('view_all_items')}}">
+                        <i id="icon" class="fa-regular fa-folder"></i>
+                        <span class="iten-description">
+                            Visualizar itens
+                        </span>
+                    </a>
+                </li>
+
+                <li class="side-iten">
+                    <a href="{{url_for('view_completed_items')}}">
+                        <i id="icon" class="fa-regular fa-folder-closed"></i>
+                        <span class="iten-description">
+                            Visualizar itens Baixados
+                        </span>
+                    </a>
+                </li>
+
+                <li class="side-iten">
+                    <a href="#">
+                        <i id="icon" class="fa-solid fa-chart-column"></i>
+                        <span class="iten-description">
+                            Relatorios
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <button id="open_btn">
+                <i id="open_btn_icon" class="fa-solid fa-bars"></i>
+            </button>
         </div>
 
-        <ul>
-            <li><a href="{{url_for('add_item')}}" class="list-group-item list-group-item-action"><b>Adicionar Item</b></a></li>
-            <li><a href="{{url_for('view_all_items')}}" class="list-group-item list-group-item-action"><b>Lista de Itens</b></a></li>
-            <li><a href="{{url_for('view_completed_items')}}" class="list-group-item list-group-item-action"><b>Lista de Itens Baixados</b></a></li>
-        </ul>
+        <!-- <div id="logout">
+            <button id="logout_btn">
+                <i id="icon" class="fa-solid fa-right-from-bracket"></i>
+                <span calss="iten-description">
+                    Logout
+                </span>
+            </button>
+        </div> -->
     </nav>
 
-    <main class="title">
-        <h1><b>Segurança Patrimonial</b></h1>
-        <h3>
-            <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Sistema de Cadastro de Achados e Perdidos
-            </b>
-        </h3>
-    </main>   
+    <main>
+        <h1>Sistema de Cadastro</h1>
+        <h3>de</h3>
+        <h2>Achados e Perdidos</h3>
+    </main>
+    <script src="/static/JS/open_sidebar.js"></script>
 </body>
 </html>

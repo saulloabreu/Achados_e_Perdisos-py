@@ -8,8 +8,8 @@
     <title>Ver Itens - Lost and Found</title>
     <link rel="icon" type="image/png" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/digital-key-2521684-2108304.png"> <!--Favicon-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/CSS/style02.css">
-    <link rel="stylesheet" href="/static/CSS/styleModal.css">
+    <link rel="stylesheet" href="/static/CSS/Style_views.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
 <body>
@@ -21,7 +21,7 @@
     </script>
 
     <div class="container">
-        <h4 class="mt-4 title"><b>Ver Itens</b></h4>
+        <h4 class="mt-2 title"><b>Itens</b></h4>
         <hr class="linha spacer">
         <div class="status-box">
             <h7 class="title">Status</h7>
@@ -33,7 +33,7 @@
         </div>
         <form class="mb-4 form-row">
             <div class="col">
-                <input type="text" class="form-control btn_filters" placeholder="Nome ou Id" name="palavra_chave" value="{{ request.args.get('palavra_chave', '') }}">
+                <input type="text" class="form-control btn_filters" placeholder="Nome do Item ou ID" name="palavra_chave" value="{{ request.args.get('palavra_chave', '') }}">
             </div>
             <div class="col">
                 <input type="date" class="form-control btn_filters" name="start_date" value="{{ request.args.get('start_date', '') }}">
@@ -42,7 +42,10 @@
                 <input type="date" class="form-control btn_filters" name="end_date" value="{{ request.args.get('end_date', '') }}">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn button-red">Filtrar</button>
+                <button type="submit" class="button-red">
+                    <i id="icon" class="fa-solid fa-filter"></i>
+                    <span id="filtro">Filtrar</span>
+                </button>
             </div>         
         </form>
         <div class="table-container">
@@ -52,7 +55,7 @@
                         <th>ID</th>
                         <th>Vigilante</th>
                         <th>Matricula</th>
-                        <th>Nome\Descrição</th>
+                        <th>Descrição\Item</th>
                         <th>Obs</th>
                         <th>Local</th>
                         <th>Data de Encontrado</th>
@@ -71,30 +74,26 @@
                         <!--Altera o formato da data somente na pagina-->
                         <td data-date="{{ item[6] }}" data-formatted-date=""></td> 
                         <td>
-                            <a href="{{ url_for('formulario', id=item[0], nome=item[3], data_encontrado=item[6]) }}" class="btn button-red">Dar Baixa</a>
+                            <a href="{{ url_for('formulario', id=item[0], nome=item[3], data_encontrado=item[6]) }}" class="btn-panel">
+                                <i id="icon" class="fa-solid fa-circle-arrow-down" style="font-size: 150%;"></i>
+                                <span>Dar Baixa</span>
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <!--Java Script responsavel pela alteração do formato da data de["%Y/%mm/%dd" para "%dd/%mm/%Y"] somente na pagina-->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-            <script>
-                var dataCells = document.querySelectorAll('td[data-date]');
-
-                dataCells.forEach(function(cell) {
-                    var data = cell.getAttribute('data-date');
-                    var dataFormatada = moment(data, 'YYYY-MM-DD').format('DD/MM/YYYY');
-                    cell.setAttribute('data-formatted-date', dataFormatada);
-                    cell.innerText = dataFormatada;
-                });
-            </script>
         </div>
         <br class="spacer">
-        <div class="form-group">
-            <a href="{{ url_for('index') }}" class="btn button-red down_left">Voltar à Página Principal</a>
+        <!-- Painel Horizontal com Ícones e Descrição -->
+        <div class="horizontal-panel">          
+            <button class="btn-panel" onclick="redirectToIndex()" title="Home">
+                <i id="icon" class="fas fa-house"></i>
+                <span></span>
+            </button>
         </div>
-        
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="/static/JS/format_data.js"></script>
 </body>
 </html>

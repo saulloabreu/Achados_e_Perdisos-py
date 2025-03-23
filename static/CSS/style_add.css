@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ----------- Estilos da tabela ----------- */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    max-height: 300px; /* Altura máxima para rolamento */
+    overflow-y: scroll; /* Rolagem vertical */
+    border-radius: 10px;
+    border: 3px solid #dee2e6;
+    font-size: 14px;
+  }
+
+  #add-item-form {
+    box-shadow: 2px 6px 6px 6px rgba(0, 0, 0, 0.1);  /* Sombra adicionada aqui */
+    padding: 20px; /* Espaçamento interno opcional */
+    border-radius: 10px; /* Bordas arredondadas opcionais */
+}
+  
+  thead th {
+    position: sticky;
+    top: 0;
+    background-color: #282727;
+  }
+  
+  thead {
+    border: 3px solid #fff;
+    background-color: #282727;
+    height: 50px;
+    width: 100%;
+  }
+  
+  thead::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+  }
+  
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #dee2e6;
+    border-radius: 10px;
+    border-collapse: collapse;
+    border: 3px solid #dee2e6;
+  }
+  
+  .custom-table tbody tr:hover {
+    background-color: black;
+    color: white;
+    border: 2px solid rgb(252, 10, 10);
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .table tbody + tbody {
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .table-sm th,
+  .table-sm td {
+    padding: 0.3rem;
+  }
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-bordered thead th,
+  .table-bordered thead td {
+    border-bottom-width: 2px;
+  }
+  
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #131313;
+  }
+  
+  /* --------------------------------- fim style tabela  --------------------------------- */
+  
+  /* --------------------------------- Botões --------------------------------- */
+  .btn,
+  .btn_voltar {
+    padding: 05px;
+    background: rgb(10, 131, 252);
+    color: #fff;
+    border: 3px solid rgb(10, 131, 252);
+    outline: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .btn_filters {
+    font-size: 15px;
+  }
+  
+  br.spacer {
+    display: block;
+    content: "";
+    margin-top: 8px; /* Espaçamento superior */
+    margin-bottom: 8px; /* Espaçamento inferior */
+  }
+  
+  .button-red:hover {
+    background-color: #030d68;
+    color: white;
+    
+  }
+  
+  /* --------------------------------- fim Botões --------------------------------- */
+  
+  /* --------------------------------- linhas --------------------------------- */
+  .linha {
+    border-color: #dee2e6;
+    border: 1px solid #dee2e6;
+    color: #dee2e6;
+  }
+  
+  /* --------------------------------- fim linhas --------------------------------- */
+  
+  .title {
+    color: #dee2e6;
+  }
+  
+  .title h3 {
+    color: rgb(10, 131, 252);
+  }
+  
+  /* ---------- Estilizando Barra de Rolagem --------- */
+  ::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem */
+  }
+  
+  /* Estilizando o trilho da barra de rolagem */
+  ::-webkit-scrollbar-track {
+    background-color: white; /* Cor de fundo do trilho */
+  }
+  
+  /* Estilizando o indicador da barra de rolagem */
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 02px; /* Cor do indicador */
+  }
+  
+  /* Estilizando o indicador quando passar o mouse sobre ele */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #000;
+    border: solid 1px #fc0000;
+  }
+  
+  /* --------------------------------- Painel Horizontal --------------------------------- */
+.horizontal-panel {
+display: flex;
+justify-content: center; /* Centraliza os itens horizontalmente */
+gap: 60px; /*Espaçamento entre os itens */
+margin-top: 10px; /* Espaçamento acima do painel */
+margin-bottom: auto; /* Espaçamento abaixo do painel */
+background-color: rgb(36, 34, 34); /* Fundo escuro para o painel */
+padding: 5px; /* Espaçamento interno */
+border-radius: 10px; /* Bordas arredondadas */
+width: 20%;
+border: #000;
+}
+
+.panel-item {
+display: flex;
+flex-direction: column; /* Ícone e texto alinhados verticalmente */
+align-items: center; /* Centraliza os itens */
+gap: 5px; /* Espaçamento entre o ícone e o texto */
+}
+
+.btn-panel {
+gap: 8px; /* Espaçamento entre o ícone e o texto */
+background-color: transparent; /* Fundo transparente */
+border: none; /* Remove borda */
+color: #fff; /* Cor do texto e ícone */
+font-size: 16px; /* Tamanho do texto */
+cursor: pointer;
+display: flex;
+flex-direction: column; /* Ícone e texto alinhados verticalmente */
+align-items: center; /* Centraliza os itens */
+width: 220%; /* Ocupa toda a largura do .panel-item */
+height: 100%; /* Ocupa toda a altura do .panel-item */
+padding: 10px; /* Adiciona espaçamento interno para aumentar a área clicável */
+
+}
+
+.btn-panel i {
+font-size: 30px; /* Tamanho do ícone */
+}
+
+.btn-panel span {
+font-size: 14px; /* Tamanho do texto */
+white-space: nowrap; /* Evita quebra de linha no texto */
+}
+
+/* .btn-panel:hover {
+transform: scale(1.1);
+} */
+
+/* .btn-panel:hover, 
+#icon:hover, 
+.btn-panel:hover i,
+.btn-panel:hover span  {
+border-radius: 5px;
+color: #fff !important;
+} */
+
+#icon {
+font-size: 25px;
+color: rgb(10, 131, 252);
+}
+
+.btn-panel:hover {
+  border-radius: 5px;
+  /* Fundo ou outras propriedades podem ser adicionadas aqui */
+}
+
+/* Define a cor do ícone no hover */
+.btn-panel:hover i {
+  color: #fff !important; /* Ícone fica branco */
+}
+
+/* Define a cor do texto no hover */
+.btn-panel:hover span {
+  color: rgb(10, 131, 252) !important; /* Texto fica azul */
+}

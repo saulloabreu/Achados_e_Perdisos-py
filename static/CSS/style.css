@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #413f3f;
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+    /* justify-content: center;
+    align-items: center; */
+    margin-left: 392px; /* Margem inicial para o sidebar fechado */
+    margin-top: 100px;
+    transition: margin-left 0.5s ease;
+}
+
+
+
+#sidebar {
+    /* width: 92px; */
+    top: 0;
+    left: 0;
+    transition: transform 0.5s ease; 
+    z-index: 1000; 
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(36, 34, 34);
+    height: 100vh;
+    border-radius: 0px 18px 18px 0px;
+    position: fixed;
+    transition: all 0.5s;
+    min-width: 82px;
+}
+
+#sidebar_content {
+    padding: 12px;
+}
+
+#user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+/* Estado padrão: sidebar fechado */
+#user_avatar,
+#user_infos {
+    opacity: 0; /* Torna invisível */
+    visibility: hidden; 
+    transition: opacity 0.5s ease, visibility 0.3s ease;
+}
+
+/* Quando o sidebar estiver aberto */
+#sidebar.open-sidebar #user_avatar,
+#sidebar.open-sidebar #user_infos {
+    opacity: 1; /* Torna visível */
+    visibility: visible; 
+}
+
+#user_avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+#user_infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#user_infos span {
+    color: #fc0000;
+    font-size: 12px;
+}
+
+#side_itens {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+}
+
+.side-iten {
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+}
+
+.side-iten:hover,
+#logout_btn:hover {
+    background-color: #030d68;
+
+}
+
+.side-iten:hover i,
+.side-iten:hover span,
+#logout_btn:hover i,
+#logout_btn:hover span {
+    color: #fff !important;
+}
+
+.side-iten a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+#icon {
+    font-size: 25px;
+    color: rgb(10, 131, 252);
+}
+
+#logout {
+    border-top: 1px solid rgb(10, 131, 252);
+    padding: 12px;
+}
+
+#logout_btn {
+    border: none;
+    padding: 12px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: transparent;
+    width: 100%; 
+    text-align: start;
+    color: #fff;
+}
+
+#logout_btn i {
+    font-size: 20px; /* Tamanho do ícone */
+}
+
+#logout_btn span {
+    transition: opacity 0.3s ease;
+    display: none;
+}
+
+#open_btn {
+    position: absolute;
+    top: 20px;
+    right: 32px;
+    background-color: transparent; 
+    color: #fff; 
+    border: none; 
+    outline: none; 
+    box-shadow: none; 
+    width: 20px; 
+    height: 20px; 
+    cursor: pointer; 
+    font-size: 27px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 0; 
+}
+
+#open_btn_icon {
+    transition: transform .5s ease;
+}
+
+.open-sidebar #open_btn_icon {
+    transform: rotate(180deg);
+}
+
+.iten-description {
+    width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+    transition: width .6s;
+    height: 0px;
+}
+
+#sidebar.open-sidebar {
+    min-width: 15%;
+}
+
+#sidebar.open-sidebar .iten-description {
+    width: 175px;
+    height: auto;
+}
+
+#sidebar.open-sidebar .side-iten a {
+    justify-content: flex-start;
+    gap: 14px;
+}
+
+/* Quando o sidebar estiver aberto */
+#sidebar.open-sidebar #logout_btn span {
+    display: inline-block; /* Mostra o texto */
+}
+
+/* #sidebar.open-sidebar + main {
+    margin-left: calc(20% + 20px); 
+} */
+
+h1, h3 , h2{
+    color: #fff;
+}
+

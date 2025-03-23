@@ -5,6 +5,11 @@ import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, jsonify, send_from_directory
 import webbrowser
 import sys
+from plotly.express import *
+import plotly_express as px
+import pandas as pd
+
+
 
 
 app = Flask(__name__)
@@ -246,6 +251,9 @@ def visualizar_formulario(item_id):
     # Retorna o formulário preenchido em formato PDF
     return send_from_directory('', file_path)
 
+
+
+
 if __name__ == '__main__':
     # Cria as tabelas no banco de dados
     create_items_table()
@@ -259,7 +267,4 @@ if __name__ == '__main__':
     open_browser()
 
     # Iniciar o servidor Flask
-    app.run(host='127.0.0.1')
-
-
-
+    app.run(host='127.0.0.1', debug=True)

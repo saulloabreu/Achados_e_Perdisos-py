@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #413f3f;
+    margin: 0;
+}
+
+/* ----------- Estilos da tabela ----------- */
+.Table-container {
+    width: 100%;
+    overflow-x: auto;
+    max-height: 300px; /* Altura máxima para rolamento */
+    overflow-y: scroll; /* Rolagem vertical */
+    border-radius: 10px;
+    border: 3px solid #dee2e6;
+    font-size: 14px;
+  }
+
+  #add-item-form {
+    box-shadow: 2px 6px 6px 6px rgba(0, 0, 0, 0.1);  /* Sombra adicionada aqui */
+    padding: 20px; /* Espaçamento interno opcional */
+    border-radius: 10px; /* Bordas arredondadas opcionais */
+}
+  
+  thead th {
+    position: sticky;
+    top: 0;
+    background-color: #282727;
+  }
+  
+  thead {
+    border: 3px solid #fff;
+    background-color: #282727;
+    height: 50px;
+    width: 100%;
+  }
+  
+  thead::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+  }
+  
+  .Table {
+    width: 145%;
+    margin-bottom: 1rem;
+    color: #dee2e6;
+    border-radius: 10px;
+    border-collapse: collapse;
+    border: 3px solid #dee2e6;
+  }
+  
+  .custom-Table tbody tr:hover {
+    background-color: black;
+    color: white;
+    border: 2px solid rgb(252, 10, 10);
+  }
+  
+  .Table th,
+  .Table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .Table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .Table tbody + tbody {
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .Table-sm th,
+  .Table-sm td {
+    padding: 0.3rem;
+  }
+  
+  .Table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .Table-bordered th,
+  .Table-bordered td {
+    border: 1px solid #dee2e6;
+  }
+  
+  .Table-bordered thead th,
+  .Table-bordered thead td {
+    border-bottom-width: 2px;
+  }
+  
+  .Table-striped tbody tr:nth-of-type(odd) {
+    background-color: #131313;
+  }
+  
+  /* --------------------------------- fim style tabela  --------------------------------- */
+  
+
+

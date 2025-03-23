@@ -20,7 +20,7 @@ def update_items_data(updates):
 
 if __name__ == '__main__':
     updates_to_apply = [
-        ('teteu', '21210011', 'celular Moto G100', '--', 'Foyer', '2023/07/11', 1)
+        ('teteu', '21210011', 'celular Moto G100', '--', 'Foyer', '2023/07/11', 22)
         
     ]
 
